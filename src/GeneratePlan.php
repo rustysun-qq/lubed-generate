@@ -1,8 +1,8 @@
 <?php
 
-namespace Lube;
+namespace Lubed;
 
-use Lube\Utils\Path;
+use Lubed\Utils\Path;
 
 /**
  * GeneratePlan interface

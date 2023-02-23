@@ -1,12 +1,12 @@
 <?php
-namespace Lube\Services;
+namespace Lubed\Services;
 
 use DefaultGeneratePlanModel;
-use Lube\Utils\Config;
-use Lube\Utils\Constant;
-use Lube\Data\DB;
-use Lube\Utils\Path;
-use Lube\Utils\Registry;
+use Lubed\Utils\Config;
+use Lubed\Utils\Constant;
+use Lubed\Data\DB;
+use Lubed\Utils\Path;
+use Lubed\Utils\Registry;
 
 /**
  * Class DefaultGenerateService

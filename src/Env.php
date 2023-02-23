@@ -1,5 +1,5 @@
 <?php
-namespace Lube;
+namespace Lubed;
 
 use Closure;
 use Dotenv\Repository\Adapter\PutenvAdapter;

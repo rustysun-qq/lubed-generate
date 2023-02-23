@@ -1,6 +1,6 @@
 <?php
 
-namespace Lube;
+namespace Lubed;
 
 /**
  * Class Bootstrap

@@ -1,5 +1,5 @@
 <?php
-namespace Lube\Exceptions;
+namespace Lubed\Exceptions;
 
 /**
  * ErrorCode

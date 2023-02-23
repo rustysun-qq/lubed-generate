@@ -1,5 +1,5 @@
 <?php
-namespace Lube\Exceptions;
+namespace Lubed\Exceptions;
 
 use Exception;
 use Throwable;

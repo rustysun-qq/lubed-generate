@@ -1,5 +1,5 @@
 {
-    "name": "lube/generate",
+    "name": "lubed/generate",
     "description": "Yet another php7+ code generator!",
     "license": "MIT",
     "version": "0.1.0",
@@ -14,17 +14,19 @@
         "ext-pdo": "*",
         "ext-zlib": "*",
         "vlucas/phpdotenv": "5.3.*",
-        "symfony/console": "5.3.*"
+        "symfony/console": "5.3.*",
+        "lubed/utils": "dev-main",
+        "lubed/data": "dev-main"
     },
     "require-dev": {
         "symfony/var-dumper": "^5.3"
     },
     "autoload": {
         "psr-4": {
-            "Lube\\": "src/",
+            "Lubed\\": "src/"
         }
     },
-    "bin": ["lube"],
+    "bin": ["lubed"],
     "config": {
         "bin-dir": "scripts"
     }

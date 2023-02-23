@@ -9,13 +9,13 @@ if (file_exists(LUBYE_PATH.'/../../vendor/autoload.php')) {
     require LUBYE_PATH.'/vendor/autoload.php';
 }
 
-use Lubye\Bootstrap;
-use Lubye\Env;
-use Lubye\LoadEnv;
-use Lubye\Utils\Config;
-use Lubye\Utils\Constant;
-use Lubye\Utils\Path;
-use Lubye\Utils\Registry;
+use Lubed\Bootstrap;
+use Lubed\Env;
+use Lubed\LoadEnv;
+use Lubed\Utils\Config;
+use Lubed\Utils\Constant;
+use Lubed\Utils\Path;
+use Lubed\Utils\Registry;
 
 
 $longOpts = [
@@ -38,8 +38,8 @@ $generateService = trim($options['service'] ?? 'Default');
 $resourcePath = Env::get('APP_RESOURCE_PATH');
 $path = Path::getInstance(LUBYE_PATH, $resourcePath);
 $builder = new Bootstrap;
-$generateServiceClass = sprintf('\\Lubye\\Services\\%sGenerateService', $generateService);
-$planClass = sprintf('\\Lubye\\%s',str_replace('.','\\',$generateService));
+$generateServiceClass = sprintf('\\Lubed\\Services\\%sGenerateService', $generateService);
+$planClass = sprintf('\\Lubed\\%s',str_replace('.','\\',$generateService));
 $defaultParams = [];
 $registry = Registry::getInstance();
 $isGeneratePlan =  class_exists($planClass,true);

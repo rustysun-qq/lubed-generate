@@ -1,5 +1,5 @@
 <?php
-namespace Lube;
+namespace Lubed;
 
 use Dotenv\Dotenv;
 use Dotenv\Exception\InvalidFileException;
