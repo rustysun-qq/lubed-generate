@@ -1,7 +1,7 @@
 {
     "name": "lubed/generate",
     "description": "Yet another php7+ code generator!",
-    "license": "MIT",
+    "license": "Apache-2.0",
     "version": "0.1.0",
     "authors": [
         {
