@@ -1,0 +1,69 @@
+#!/usr/bin/env php
+<?php
+defined('LUBYE_PATH') or define('LUBYE_PATH', __DIR__);
+if (file_exists(LUBYE_PATH.'/../../vendor/autoload.php')) {
+    require LUBYE_PATH.'/../../autoload.php';
+} elseif (file_exists(LUBYE_PATH.'/../vendor/autoload.php')) {
+    require LUBYE_PATH.'/../vendor/autoload.php';
+} else {
+    require LUBYE_PATH.'/vendor/autoload.php';
+}
+
+use Lubye\Bootstrap;
+use Lubye\Env;
+use Lubye\LoadEnv;
+use Lubye\Utils\Config;
+use Lubye\Utils\Constant;
+use Lubye\Utils\Path;
+use Lubye\Utils\Registry;
+
+
+$longOpts = [
+    'service:',
+    'plan:',
+    'output:',
+    'data:',
+];
+$options = getopt('', $longOpts);
+//获取 构建方案名称 参数
+$plan = trim($options['plan'] ?? null);
+if (!$plan) {
+    //TODO:
+}
+$output = trim($options['output'] ?? null);
+$dataSource = trim($options['data'] ?? null);
+$generateService = trim($options['service'] ?? 'Default');
+//载入.env
+(new LoadEnv(LUBYE_PATH))->bootstrap();
+$resourcePath = Env::get('APP_RESOURCE_PATH');
+$path = Path::getInstance(LUBYE_PATH, $resourcePath);
+$builder = new Bootstrap;
+$generateServiceClass = sprintf('\\Lubye\\Services\\%sGenerateService', $generateService);
+$planClass = sprintf('\\Lubye\\%s',str_replace('.','\\',$generateService));
+$defaultParams = [];
+$registry = Registry::getInstance();
+$isGeneratePlan =  class_exists($planClass,true);
+if ('Default' === $generateService||$isGeneratePlan) {
+    try {
+        $plan_config = new Config(sprintf('plan.%s', $plan), $path);
+    } catch (\Lubye\Exceptions\LubyeException $e) {
+        $plan_config = new Config(sprintf('plan.%s.default', $plan), $path);
+    }
+    $registry->set(Constant::PLAN_CONFIG_KEY, $plan_config);
+    //get local datasource config
+    $db_config = new Config('config.db', $path);
+    $registry->set(Constant::DB_CONFIG_KEY, $db_config);
+    $defaultParams = [$registry->get(Constant::PLAN_CONFIG_KEY), $path];
+    if($isGeneratePlan){
+        $defaultParams= [$dataSource];
+        $builder->run($planClass, $output, $defaultParams);
+        return;
+    }
+}
+else {//REMOTE generate service
+    $remote_config = new Config('config.remote', $path);
+    $registry->set(Constant::REMOTE_CONFIG_KEY, $remote_config);
+    $defaultParams = [$registry->get(Constant::REMOTE_CONFIG_KEY), $path];
+}
+array_push($defaultParams, $path);
+$builder->run($generateServiceClass, $output, $defaultParams, $dataSource);

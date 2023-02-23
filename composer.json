@@ -1,0 +1,31 @@
+{
+    "name": "lube/generate",
+    "description": "Yet another php7+ code generator!",
+    "license": "MIT",
+    "version": "0.1.0",
+    "authors": [
+        {
+            "name": "cjj",
+            "email": "cjj8110@163.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.3",
+        "ext-pdo": "*",
+        "ext-zlib": "*",
+        "vlucas/phpdotenv": "5.3.*",
+        "symfony/console": "5.3.*"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lube\\": "src/",
+        }
+    },
+    "bin": ["lube"],
+    "config": {
+        "bin-dir": "scripts"
+    }
+}
