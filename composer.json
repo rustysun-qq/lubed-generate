@@ -13,8 +13,8 @@
         "php": ">=7.3",
         "ext-pdo": "*",
         "ext-zlib": "*",
-        "vlucas/phpdotenv": "5.3.*",
-        "symfony/console": "5.3.*",
+        "vlucas/phpdotenv": "5.4.*",
+        "symfony/console": "5.4.*",
         "lubed/utils": "dev-main",
         "lubed/data": "dev-main"
     },
